@@ -6,7 +6,7 @@ This is a bot that will scrape tweets from politician's twitter feeds and save t
 
 #Why did I make it?
 
-I wanted to learn how to develop something for the Arweave blockchain, so I entered their Permafeed competition. 
+I wanted to learn how to develop something for the Arweave blockchain, so I entered their Permafeed competition. See the competition information here - https://gitcoin.co/issue/ArweaveTeam/Bounties/20/3827
 
 #How does it work?
 
