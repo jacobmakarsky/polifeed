@@ -7,6 +7,8 @@
 	<title>Polifeed</title>
 
 	<link rel="stylesheet" href="resources/css/style.css">
+	<script type = "text/javascript" src="resources/js/script.js"></script>
+
 </head>
 <body>
 	<header>
@@ -16,7 +18,33 @@
 
 	<main>
 		<!--searchable table here populated with data from arweave permafeed-->
-		
+		<div class="container">
+		  <div class="row">
+		    <div id="tableGoesHere" class="col-md-6"></div>
+		  </div><!-- /row -->
+		</div><!-- container -->
+
+		<script>
+
+			var defaultData = [
+			  { country: 'China',         population: 1379510000 },
+			  { country: 'India',         population: 1330780000 },
+			  { country: 'United States', population:  324788000 },
+			  { country: 'Indonesia',     population:  260581000 },
+			  { country: 'Brazil',        population:  206855000 },
+			];
+
+			/* make tableGoesHere html div filled with return value of json2table */
+			document.getElementById('tableGoesHere').innerHTML = json2table(defaultData, 'table');
+
+			/* Live example */
+			dom.data.value = JSON.stringify(defaultData);
+
+			dom.data.addEventListener('input', function() 
+			{
+			  dom.table.innerHTML = json2table(JSON.parse(dom.data.value), 'table');
+			});
+		</script>
 
 		<!--needs to use javascript to connect to arweave and pull data from the json upload transaction-->
 	</main>
