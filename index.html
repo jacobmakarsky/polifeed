@@ -7,7 +7,7 @@
 	<title>Polifeed</title>
 
 	<link rel="stylesheet" href="resources/css/style.css">
-	<script type = "text/javascript" src="resources/js/script.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
 </head>
 <body>
@@ -20,29 +20,33 @@
 		<!--searchable table here populated with data from arweave permafeed-->
 		<div class="container">
 		  <div class="row">
-		    <div id="tableGoesHere" class="col-md-6"></div>
+		    <div id="tableGoesHere" class="col-md-6">TABLE</div>
 		  </div><!-- /row -->
 		</div><!-- container -->
 
 		<script>
 
-			var defaultData = [
-			  { country: 'China',         population: 1379510000 },
-			  { country: 'India',         population: 1330780000 },
-			  { country: 'United States', population:  324788000 },
-			  { country: 'Indonesia',     population:  260581000 },
-			  { country: 'Brazil',        population:  206855000 },
-			];
+			document.getElementById("tableGoesHere").style.color = "white";
 
-			/* make tableGoesHere html div filled with return value of json2table */
-			document.getElementById('tableGoesHere').innerHTML = json2table(defaultData, 'table');
+			var url = "https://arweave.net/vq7Myxad4FKcAP3s9_ZeYweIxc6La2b8aRkLyYyH0sc";
 
-			/* Live example */
-			dom.data.value = JSON.stringify(defaultData);
-
-			dom.data.addEventListener('input', function() 
-			{
-			  dom.table.innerHTML = json2table(JSON.parse(dom.data.value), 'table');
+			//this is returning some error right now
+			$.ajax({
+				dataType: 'json',
+			  	method: "GET",
+			  	cache: false,
+			  	url: url,
+			  	success: function(data) 
+			  	{
+			    	document.getElementById('tableGoesHere').style.color = "blue";
+			    	document.getElementById('tableGoesHere').innerHTML = data;
+			  	},
+			  	error: function(error) 
+			  	{
+			    	//What do you want to do with the error?
+			    	document.getElementById('tableGoesHere').innerHTML = "ERROR: " + error;
+			    	document.getElementById('tableGoesHere').style.color = "red";
+			  	},
 			});
 		</script>
 
