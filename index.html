@@ -28,23 +28,20 @@
 
 			document.getElementById("tableGoesHere").style.color = "white";
 
-			var url = "https://arweave.net/vq7Myxad4FKcAP3s9_ZeYweIxc6La2b8aRkLyYyH0sc";
-
 			//this is returning some error right now
 			$.ajax({
-				dataType: 'json',
-			  	method: "GET",
-			  	cache: false,
-			  	url: url,
+				type: 'GET',
+				url: 'https://arweave.net/vq7Myxad4FKcAP3s9_ZeYweIxc6La2b8aRkLyYyH0sc',
+				dataType: 'html',
 			  	success: function(data) 
 			  	{
 			    	document.getElementById('tableGoesHere').style.color = "blue";
 			    	document.getElementById('tableGoesHere').innerHTML = data;
 			  	},
-			  	error: function(error) 
+			  	error: function(xhr, status, error) 
 			  	{
 			    	//What do you want to do with the error?
-			    	document.getElementById('tableGoesHere').innerHTML = "ERROR: " + error;
+			    	document.getElementById('tableGoesHere').innerHTML = "ERROR: " + status + " " + error ;
 			    	document.getElementById('tableGoesHere').style.color = "red";
 			  	},
 			});
