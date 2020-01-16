@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 	<title>Polifeed</title>
@@ -20,34 +19,33 @@
 		<!--searchable table here populated with data from arweave permafeed-->
 		<div class="container">
 		  <div class="row">
-		    <div id="tableGoesHere" class="col-md-6">TABLE</div>
+		   <div id="dataTable" class="aaa"></div>
 		  </div><!-- /row -->
 		</div><!-- container -->
 
 		<script>
+			//change the div to white text, it needed to go here for some reason
+			document.getElementById("dataTable").style.color = "white";
 
-			document.getElementById("tableGoesHere").style.color = "white";
-
-			//this is returning some error right now
 			$.ajax({
 				type: 'GET',
 				url: 'https://arweave.net/vq7Myxad4FKcAP3s9_ZeYweIxc6La2b8aRkLyYyH0sc',
 				dataType: 'html',
-			  	success: function(data) 
+			  	success: function(result) //if it retrieves the data correctly
 			  	{
-			    	document.getElementById('tableGoesHere').style.color = "blue";
-			    	document.getElementById('tableGoesHere').innerHTML = data;
+			  		//populate table element with data
+                	document.getElementById('dataTable').innerHTML = result;
+
 			  	},
-			  	error: function(xhr, status, error) 
+			  	error: function(xhr, status, error)
 			  	{
 			    	//What do you want to do with the error?
-			    	document.getElementById('tableGoesHere').innerHTML = "ERROR: " + status + " " + error ;
-			    	document.getElementById('tableGoesHere').style.color = "red";
+			    	document.getElementById('dataTable').innerHTML = "ERROR: " + status + " " + error ;
+			    	document.getElementById('dataTable').style.color = "red";
 			  	},
 			});
 		</script>
 
-		<!--needs to use javascript to connect to arweave and pull data from the json upload transaction-->
 	</main>
 
 	<footer>
